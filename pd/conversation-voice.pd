@@ -1,4 +1,4 @@
-#N canvas 397 99 818 522 12;
+#N canvas 397 99 481 522 12;
 #X obj 25 12 inlet;
 #X obj 25 395 outlet~;
 #X obj 83 395 outlet~;
@@ -22,8 +22,11 @@
 #X obj 312 229 route status rssi;
 #X floatatom 370 253 5 0 0 0 - - - 0;
 #X obj 312 276 voice/mid-noise;
-#X obj 312 300 *~ 0.2;
-#X obj 363 300 *~ 0.2;
+#X obj 25 300 *~ 1;
+#X obj 363 300 *~ 0.6;
+#X obj 168 300 *~ 1.5;
+#X obj 222 300 *~ 1.5;
+#X obj 312 300 *~ 0.8;
 #X connect 0 0 8 0;
 #X connect 5 0 10 0;
 #X connect 6 0 17 0;
@@ -38,11 +41,10 @@
 #X connect 13 0 15 0;
 #X connect 13 1 14 0;
 #X connect 14 0 15 1;
-#X connect 15 0 1 0;
-#X connect 15 0 2 0;
+#X connect 15 0 23 0;
 #X connect 15 1 19 0;
-#X connect 16 0 1 0;
-#X connect 16 1 2 0;
+#X connect 16 0 25 0;
+#X connect 16 1 26 0;
 #X connect 16 2 19 0;
 #X connect 17 0 7 1;
 #X connect 18 0 13 0;
@@ -53,8 +55,12 @@
 #X connect 20 0 22 0;
 #X connect 20 1 21 0;
 #X connect 21 0 22 1;
-#X connect 22 0 23 0;
+#X connect 22 0 27 0;
 #X connect 22 1 24 0;
 #X connect 22 2 19 0;
 #X connect 23 0 1 0;
+#X connect 23 0 2 0;
 #X connect 24 0 2 0;
+#X connect 25 0 1 0;
+#X connect 26 0 2 0;
+#X connect 27 0 1 0;

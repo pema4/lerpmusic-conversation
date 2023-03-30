@@ -11,7 +11,7 @@
 #X obj 42 226 +;
 #X obj 74 196 * 12;
 #X obj 42 355 lerp/fb;
-#A saved 15.9705 0 -95;
+#A saved 16.0322 0 -43;
 #X obj 42 13 inlet;
 #X obj 222 13 inlet;
 #X obj 74 172 random 6;
@@ -20,7 +20,7 @@
 #X obj 87 37 s \$0-state;
 #X obj 42 37 sel 1;
 #X msg 168 281 fb \$1;
-#N canvas 723 197 272 305 gate 1;
+#N canvas 723 197 272 305 gate 0;
 #X obj 103 19 inlet;
 #X obj 49 19 inlet~;
 #X msg 171 67 stop;
@@ -56,7 +56,6 @@
 #X obj 203 333 r \$0-state;
 #X obj 203 357 sel 1;
 #X obj 42 439 lop~ 2000;
-#X obj 42 463 *~ 0.3;
 #X connect 1 0 10 0;
 #X connect 2 0 1 1;
 #X connect 3 0 5 0;
@@ -86,5 +85,4 @@
 #X connect 26 0 25 0;
 #X connect 27 0 28 0;
 #X connect 28 0 26 0;
-#X connect 29 0 30 0;
-#X connect 30 0 19 0;
+#X connect 29 0 19 0;
