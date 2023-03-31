@@ -15,7 +15,7 @@ Project consists from two applications:
 
 UDP port 5000 is used for communication between applications.
 
-## Bluetooth announcements listener
+### Bluetooth announcements listener
 
 The script may require sudo to work correctly.
 
@@ -24,7 +24,7 @@ cd js
 npm install
 node index.js
 ```
-## Pure Data patch
+### Pure Data patch
 
 Patch runs on Pure Data Vanilla 0.53-2 (maybe on some older versions to, I didn't tested it).
 
