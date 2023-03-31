@@ -13,6 +13,8 @@ Project consists from two applications:
 2. [`pd/main.pd`](https://github.com/pema4/lerpmusic-conversation/tree/main/pd/main.pd) -
    Pure Data patch.
 
+UDP port 5000 is used for communication between applications.
+
 ## Bluetooth announcements listener
 
 The script may require sudo to work correctly.
