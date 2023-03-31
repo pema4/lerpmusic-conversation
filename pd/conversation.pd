@@ -1,4 +1,4 @@
-#N canvas 297 51 370 251 12;
+#N canvas 297 51 364 367 12;
 #X obj 10 120 outlet~;
 #X obj 103 120 outlet~;
 #X obj 10 10 inlet;
@@ -30,7 +30,7 @@
 #X obj 187 104 text search \$0-voices;
 #X obj 101 513 outlet;
 #X obj 337 248 text define -k \$0-voices;
-#A set 6 \; 1 \; 16 \; 2 \; 7 \; 0 \; 16 \; 2 \; 0 \; 13 \; 14 \; 4 \; 3 \; 15 \; 7 \; 4 \; 4 \; 6 \; 13 \; 6 \; 14 \; 1 \; 15 \; 6 \; 2 \; 8 \; 1 \; 10 \; 11 \; 12 \; 13 \; 0 \;;
+#A set 1 \; 4 \; 2 \; 6 \; 0 \; 5 \; 3 \; 7 \; 8 \; 9 \; -1 \; -1 \; 13 \; 14 \; 15 \; 16 \; 17 \; 18 \; -1 \; -1 \; -1 \; -1 \; -1 \; -1 \; -1 \; -1 \; -1 \; -1 \; -1 \; -1 \; -1 \; -1 \; -1 \; -1 \; -1 \; -1 \; -1 \; -1 \; -1 \; -1 \;;
 #X obj 48 465 route -1;
 #X obj 80 224 moses;
 #X obj 112 248 t b f;
@@ -130,6 +130,12 @@
 #X msg 307 168 -1;
 #X obj 10 96 *~ 0.125;
 #X obj 103 96 *~ 0.125;
+#X obj 238 215 loadbang;
+#X obj 238 239 metro 1000;
+#X obj 238 263 float, f 12;
+#X obj 238 335 print voicemap;
+#X msg 238 311 \$1 voices;
+#X obj 238 287 change;
 #X connect 2 0 3 0;
 #X connect 3 0 5 0;
 #X connect 5 0 16 0;
@@ -145,7 +151,13 @@
 #X connect 11 0 3 1;
 #X connect 12 0 11 0;
 #X connect 12 1 10 0;
+#X connect 13 0 20 1;
 #X connect 14 0 8 0;
 #X connect 15 0 8 0;
 #X connect 16 0 0 0;
 #X connect 17 0 1 0;
+#X connect 18 0 19 0;
+#X connect 19 0 20 0;
+#X connect 20 0 23 0;
+#X connect 22 0 21 0;
+#X connect 23 0 22 0;
