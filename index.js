@@ -4,6 +4,7 @@ const { Client } = require('node-osc');
 const oscClient = new Client('127.0.0.1', 5000);
 const nearbyDevices = new Map();
 const forgetTimeout = 5000;
+const deleteTimeout = 2000;
 
 setInterval(() => {
     console.log(`${nearbyDevices.size} devices nearby`);
@@ -47,8 +48,8 @@ noble.on('discover', async (peripheral) => {
         wait(forgetTimeout)
             .then(async () => {
                 if (nearbyDevices.get(id).date == now) {
-                    nearbyDevices.delete(id);
                     await sendOsc(`/btle/${index}/status`, 0);
+                    setTimeout(() => nearbyDevices.delete(id), deleteTimeout);
                 }
             })
     }

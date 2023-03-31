@@ -1,4 +1,4 @@
-#N canvas 398 191 386 303 12;
+#N canvas 398 191 395 305 12;
 #X obj 13 82 oscparse;
 #X obj 13 58 netreceive -u -b;
 #X msg 13 34 listen 5000;
@@ -16,15 +16,15 @@
 #X msg 155 69 \$1 status \$2;
 #X msg 308 42 3 1;
 #X msg 347 44 3 0;
-#X obj 53 250 conversation 60;
 #X obj 237 152 loadbang;
 #X obj 237 176 del 1000;
 #X msg 237 200 \; pd dsp 1;
+#X obj 53 250 conversation 40;
 #X connect 0 0 3 0;
 #X connect 1 0 0 0;
 #X connect 2 0 1 0;
 #X connect 3 1 13 0;
-#X connect 5 0 17 0;
+#X connect 5 0 20 0;
 #X connect 6 0 2 0;
 #X connect 7 0 14 0;
 #X connect 8 0 14 0;
@@ -35,10 +35,10 @@
 #X connect 13 0 11 0;
 #X connect 13 1 12 1;
 #X connect 13 2 12 2;
-#X connect 14 0 17 0;
+#X connect 14 0 20 0;
 #X connect 15 0 14 0;
 #X connect 16 0 14 0;
-#X connect 17 0 4 0;
-#X connect 17 1 4 1;
+#X connect 17 0 18 0;
 #X connect 18 0 19 0;
-#X connect 19 0 20 0;
+#X connect 20 0 4 0;
+#X connect 20 1 4 1;
