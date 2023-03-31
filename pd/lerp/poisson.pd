@@ -1,4 +1,4 @@
-#N canvas 341 88 332 232 12;
+#N canvas 341 88 322 228 12;
 #X obj 254 7 inlet;
 #X obj 254 53 pow -1;
 #X obj 72 30 r \$0-delayed-bang;
