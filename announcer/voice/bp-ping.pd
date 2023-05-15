@@ -8,7 +8,7 @@
 #X obj 20 185 hip~ 100;
 #X msg 307 97 harms \$1;
 #X obj 20 26 declare -path ..;
-#X obj 20 137 lerp/rndbp 8 600 20 200 234 0;
+#X obj 20 137 lerp/rndbp~ 8 600 20 200 234 0;
 #N canvas 92 117 203 255 seed 0;
 #X obj 10 177 random 1e+06;
 #X obj 10 201 * 1000;

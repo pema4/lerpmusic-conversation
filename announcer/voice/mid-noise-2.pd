@@ -80,7 +80,7 @@
 #X obj 284 406 lerp/poisson 1000;
 #X obj 254 175 expr -($f2 * (3.3 + random(-2 \, 5))) / $f1 \;;
 #X obj 10 243 expr random(10 \, 40) / 10 \; random(-240 \, -190) \; random(10 \, 30) / 10;
-#X obj 10 429 lerp/linfb-tri 0 0 1.3 100 2;
+#X obj 10 429 lerp/linfb-tri~ 0 0 1.3 100 2;
 #X obj 10 573 *~ 0.6;
 #X obj 10 597 outlet~;
 #X connect 0 0 4 0;

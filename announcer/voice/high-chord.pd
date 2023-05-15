@@ -64,9 +64,9 @@
 #X restore 48 605 pd gate2;
 #X f 20;
 #X obj 116 629 outlet~;
-#X obj 948 474 off lerp/linfb -11 -115 39 238;
-#X obj 1173 148 off lerp/linfb 3 -97 9 152;
-#X obj 1030 260 off lerp/linfb 5 146 1 238;
+#X obj 948 474 off lerp/linfb~ -11 -115 39 238;
+#X obj 1173 148 off lerp/linfb~ 3 -97 9 152;
+#X obj 1030 260 off lerp/linfb~ 5 146 1 238;
 #X msg 1123 104 freq 0.2 \, fb -140 \, delay 1 \, fold 120;
 #X msg 1046 181 rbdbp 16 2720 100 1200 134 5;
 #X msg 1047 223 rndbp 16 2720 100 1190 163 5;
@@ -80,9 +80,9 @@
 #X obj 222 123 s \$0-right;
 #X obj 301 264 s \$0-left;
 #X obj 473 264 s \$0-right;
-#X obj 1152 400 off lerp/rndbp 16 2720 100 1190 163 5;
-#X obj 1189 347 off lerp/rndbp 16 2720 100 1200 134 5;
-#X obj 1189 290 off lerp/linfb 0.2 -140 1 120;
+#X obj 1152 400 off lerp/rndbp~ 16 2720 100 1190 163 5;
+#X obj 1189 347 off lerp/rndbp~ 16 2720 100 1200 134 5;
+#X obj 1189 290 off lerp/linfb~ 0.2 -140 1 120;
 #X obj 606 12 loadbang;
 #X obj 606 98 cos~;
 #X obj 606 122 snapshot~;
@@ -115,8 +115,8 @@
 #X obj 198 298 s \$0-right;
 #X msg 19 274 skew \$1;
 #X msg 198 274 skew \$1;
-#X obj 48 398 lerp/linfb 5 128 8 100 6;
-#X obj 116 446 lerp/linfb 4.5 129 4 100 6.5;
+#X obj 48 398 lerp/linfb~ 5 128 8 100 6;
+#X obj 116 446 lerp/linfb~ 4.5 129 4 100 6.5;
 #X obj 562 451 lerp/poisson 2000;
 #X obj 42 148 expr random(160 \, 260) \; random(200 \, 250) \;;
 #X obj 48 518 lop~ 1000;
