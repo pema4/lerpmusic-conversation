@@ -3,7 +3,7 @@
 An interactive piece of music made with Pure Data.
 Composition reacts to the presence of Bluetooth LE-enabled devices nearby.
 
-The excerpt is released on the [Bandcamp](https://lerp.bandcamp.com/track/conversation-excerpt) under my artistic name Lerp.
+The excerpt is released on the [Bandcamp](https://lerp.bandcamp.com/track/conversation-excerpt) under my artist name 'lerp'.
 This piece is designed to run on Raspberry Pi and to be presented at the local art exhibition. Stay tuned for the updates.
 
 ## Running locally
