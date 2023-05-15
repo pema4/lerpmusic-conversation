@@ -3,9 +3,9 @@
 #X obj 10 10 declare -path ..;
 #X obj 10 59 helloworld;
 #X obj 10 35 bng 19 250 50 0 empty empty empty 0 -10 0 12 #fcfcfc #000000 #000000;
-#X obj 281 187 linfb2~ 1 1.2 1.4 1.6 1.8;
+#X obj 281 187 linfb~ 1 1.2 1.4 1.6 1.8;
 #X obj 280 237 output~;
-#X obj 62 175 linfb~ 1 1.2 1.4 1.6 1.8;
+#X obj 62 175 linfb0~ 1 1.2 1.4 1.6 1.8;
 #X obj 62 236 output~;
 #X obj 201 21 nbx 5 17 -1e+37 1e+37 0 1 empty empty empty 0 -10 0 12 #fcfcfc #000000 #000000 207.3 256;
 #X obj 275 22 nbx 5 17 -1e+37 1e+37 0 1 empty empty empty 0 -10 0 12 #fcfcfc #000000 #000000 281 256;

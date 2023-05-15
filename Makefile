@@ -7,7 +7,8 @@ lib.name = lerp
 
 # input source file (class name == source file basename)
 class.sources = \
-src/linfb2_int~.c \
+src/linfb_int~.c \
+src/linfb_tri_int~.c \
 src/helloworld.c \
 src/xfade~.c
 
