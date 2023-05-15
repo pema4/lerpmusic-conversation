@@ -82,7 +82,7 @@ void linfb_tri_int_tilde_setup(void) {
   linfb_tri_int_tilde_class =
       class_new(gensym("linfb_tri_int~"), (t_newmethod)linfb_tri_int_tilde_new,
                 (t_method)linfb_tri_int_tilde_free, sizeof(t_linfb_tri_int_tilde),
-                CLASS_DEFAULT, NULL);
+                CLASS_DEFAULT, 0);
 
   class_addmethod(linfb_tri_int_tilde_class, (t_method)linfb_tri_int_tilde_dsp,
                   gensym("dsp"), A_CANT, 0);
