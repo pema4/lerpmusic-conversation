@@ -6,13 +6,15 @@
 lib.name = lerp
 
 # input source file (class name == source file basename)
-class.sources = src/helloworld.c
+class.sources = \
+src/linfb_int~.c \
+src/linfb_tri_int~.c \
+src/helloworld.c \
+src/xfade~.c
 
 # all extra files to be included in binary distribution of the library
 datafiles = \
-$(wildcard help/*-help.pd) \
-$(wildcard object/*.pd) \
-lerp-meta.pd \
+$(wildcard *.pd) \
 README.md
 
 # include Makefile.pdlibbuilder from submodule directory 'pd-lib-builder'
