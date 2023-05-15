@@ -50,3 +50,12 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+# Gitignore from https://github.com/pure-data/helloworld/blob/master/.gitignore
+build
+*.pd_linux
+*.pd_darwin
+*.dll
+*.o
+*.so
+*.dylib
