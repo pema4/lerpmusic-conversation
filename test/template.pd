@@ -1,0 +1,3 @@
+#N canvas 63 88 250 90 12;
+#X declare -path .. -path ../object;
+#X obj 10 10 declare -path .. -path ../object;

@@ -4,7 +4,7 @@ static t_class *helloworld_class = NULL;
 
 typedef struct _helloworld {
   t_object x_obj;
-} t_helloworld;  
+} t_helloworld;
 
 void helloworld_bang(t_helloworld *x) {
   (void)x; // silence unused variable warning

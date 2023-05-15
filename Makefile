@@ -6,7 +6,7 @@
 lib.name = lerp
 
 # input source file (class name == source file basename)
-class.sources = src/linfb2.c
+class.sources = src/helloworld.c
 
 # all extra files to be included in binary distribution of the library
 datafiles = \
