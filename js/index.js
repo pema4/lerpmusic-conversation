@@ -3,11 +3,19 @@ const { Client } = require('node-osc');
 
 const oscClient = new Client('127.0.0.1', 5000);
 const nearbyDevices = new Map();
-const forgetTimeout = 5000;
-const deleteTimeout = 2000;
+const ANNOUNCEMENTS_THRESHOLD = 10;
+const FORGET_TIMEOUT = 5000;
+const DELETE_TIMEOUT = 2000;
 
 setInterval(() => {
-    console.log(`${nearbyDevices.size} devices nearby`);
+    console.log(`Nearby devices: ${nearbyDevices.size}`);
+    let activeDevices = 0;
+    nearbyDevices.forEach((x) => {
+        if (x.announcements >= ANNOUNCEMENTS_THRESHOLD) {
+            activeDevices += 1;
+        }
+    })
+    console.log(`Sounding devices: ${activeDevices}`);
 }, 2000);
 
 const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -24,15 +32,23 @@ const sendOsc = (address, value) => {
 };
 
 noble.on('discover', async (peripheral) => {
+    let index = 0;
     const id = peripheral.id;
     const now = new Date();
 
     if (nearbyDevices.has(id)) {
-        const index = nearbyDevices.get(id).index;
-        await sendOsc(`/btle/${index}/rssi`, peripheral.rssi);
+        const nearbyDevice = nearbyDevices.get(id);
+        index = nearbyDevice.index;
+        nearbyDevice.announcements += 1;
+        nearbyDevice.date = now;
+        if (nearbyDevices.get(id).announcements == ANNOUNCEMENTS_THRESHOLD) {
+            await sendOsc(`/btle/${index}/status`, 1);
+        }
+        if (nearbyDevices.get(id).announcements >= ANNOUNCEMENTS_THRESHOLD) {
+            await sendOsc(`/btle/${index}/rssi`, peripheral.rssi);
+        }
     } else {
         let takenIndices = new Set(new Array(...nearbyDevices.values()).map((x) => x.index));
-        let index = 0;
         while (takenIndices.has(index)) {
             ++index;
         }
@@ -40,19 +56,24 @@ noble.on('discover', async (peripheral) => {
         nearbyDevices.set(id, {
             date: now,
             index: index,
+            announcements: 1,
         });
 
-        await sendOsc(`/btle/${index}/status`, 1);
-        await sendOsc(`/btle/${index}/rssi`, peripheral.rssi);
-
-        wait(forgetTimeout)
-            .then(async () => {
-                if (nearbyDevices.get(id).date == now) {
-                    await sendOsc(`/btle/${index}/status`, 0);
-                    setTimeout(() => nearbyDevices.delete(id), deleteTimeout);
-                }
-            })
+        if (nearbyDevices.get(id).announcements == ANNOUNCEMENTS_THRESHOLD) {
+            await sendOsc(`/btle/${index}/status`, 1);
+        }
+        if (nearbyDevices.get(id).announcements >= ANNOUNCEMENTS_THRESHOLD) {
+            await sendOsc(`/btle/${index}/rssi`, peripheral.rssi);
+        }
     }
+
+    wait(FORGET_TIMEOUT)
+        .then(async () => {
+            if (nearbyDevices.get(id)?.date == now) {
+                await sendOsc(`/btle/${index}/status`, 0);
+                setTimeout(() => nearbyDevices.delete(id), DELETE_TIMEOUT);
+            }
+        })
 });
 
 noble.on('stateChange', async (state) => {
