@@ -11,7 +11,7 @@
 #X obj 10 223 +;
 #X obj 42 193 * 12;
 #X obj 10 352 lerp/fb;
-#A saved 16.0619 0 -93;
+#A saved 15.9972 0 -57;
 #X obj 10 10 inlet;
 #X obj 170 10 inlet;
 #X obj 42 169 random 6;
@@ -54,7 +54,7 @@
 #X obj 170 221 sel 1;
 #X obj 10 418 lop~ 2000;
 #X obj 10 518 outlet~;
-#X obj 10 494 *~ 0.15;
+#X obj 10 494 *~ 0.13;
 #X connect 1 0 10 0;
 #X connect 2 0 1 1;
 #X connect 3 0 5 0;

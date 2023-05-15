@@ -9,9 +9,9 @@ This piece is designed to run on Raspberry Pi and to be presented at the local a
 ## Running locally
 
 Project consists from two applications:
-1. [`js/index.js`](https://github.com/pema4/lerpmusic-conversation/tree/main/js/index.js) -
+1. [`scanner/index.js`](https://github.com/pema4/lerpmusic-conversation/tree/main/app/js/index.js) -
    Bluetooth announcements listener powered by Node.js.
-2. [`pd/main.pd`](https://github.com/pema4/lerpmusic-conversation/tree/main/pd/main.pd) -
+2. [`announcer/main.pd`](https://github.com/pema4/lerpmusic-conversation/tree/main/app/pd/main.pd) -
    Pure Data patch entry point.
 
 UDP port 5000 is used for communication between applications.
@@ -21,15 +21,15 @@ UDP port 5000 is used for communication between applications.
 The script may require sudo to work correctly.
 
 ```bash
-cd js
+cd scanner
 npm install
 node index.js
 ```
 ### Pure Data patch
 
-Patch runs on Pure Data Vanilla 0.53-2 (maybe on some older versions to, I didn't tested it).
+Patch runs on Pure Data Vanilla 0.53-2 (maybe on some older versions too, I didn't tested it).
 
 ```bash
-cd pd
+cd announcer
 pd -open main.pd
 ```
