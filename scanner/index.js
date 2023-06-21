@@ -6,7 +6,8 @@ const nearbyDevices = new Map();
 const ANNOUNCEMENTS_THRESHOLD = 3;
 const FORGET_TIMEOUT = 5000;
 const DELETE_TIMEOUT = 2000;
-let discoveredAnyPeripheral = false;
+const IDLE_RESTART_TIMEOUT = 10000;
+let lastDiscoveryTime = Date();
 
 setInterval(() => {
     console.log(`Nearby devices: ${nearbyDevices.size}`);
@@ -33,8 +34,6 @@ const sendOsc = (address, value) => {
 };
 
 noble.on('discover', async (peripheral) => {
-    discoveredAnyPeripheral = true;
-
     let index = 0;
     const id = peripheral.id;
     const now = new Date();
@@ -74,7 +73,9 @@ noble.on('discover', async (peripheral) => {
         .then(async () => {
             if (nearbyDevices.get(id)?.date == now) {
                 await sendOsc(`/btle/${index}/status`, 0);
-                setTimeout(() => nearbyDevices.delete(id), DELETE_TIMEOUT);
+                wait(DELETE_TIMEOUT)
+                    .then(() => lastDiscoveryTime = Date())
+                    .then(() => nearbyDevices.delete(id));
             }
         })
 });
@@ -98,11 +99,13 @@ function stop(signal) {
         .then(() => process.exit());
 }
 
-setTimeout(() => {
-    if (!discoveredAnyPeripheral) {
-        stop('Nothing discovered after restart');
-    }
-}, 30 * 1000);
+setInterval(() => {
+    if (nearbyDevices.size > 0)
+        return;
+    if (Date() - lastDiscoveryTime > IDLE_RESTART_TIMEOUT)
+        return;
+    stop('Nothing discovered after restart');
+}, 1000);
 
 setTimeout(() => { stop('Regular restart') }, 59.249 * 60 * 1000);
 process.on('SIGINT', stop);
