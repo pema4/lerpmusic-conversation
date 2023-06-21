@@ -89,14 +89,18 @@ noble.on('stateChange', async (state) => {
 function stop(signal) {
     console.log(`Stopping because of ${signal}`);
 
-    noble.stopScanningAsync()
-        .then(async () => {
-            for (const { index } of nearbyDevices.values()) {
-                await sendOsc(`/btle/${index}/status`, 0);
-            }
-            nearbyDevices.clear()
-        })
-        .then(() => process.exit());
+    if (nearbyDevices.size != 0) {
+        noble.stopScanningAsync()
+            .then(async () => {
+                for (const { index } of nearbyDevices.values()) {
+                    await sendOsc(`/btle/${index}/status`, 0);
+                }
+                nearbyDevices.clear()
+            })
+            .then(() => process.exit());
+    } else {
+        process.exit();
+    }
 }
 
 setInterval(() => {
