@@ -3,9 +3,10 @@ const { Client } = require('node-osc');
 
 const oscClient = new Client('127.0.0.1', 5000);
 const nearbyDevices = new Map();
-const ANNOUNCEMENTS_THRESHOLD = 10;
+const ANNOUNCEMENTS_THRESHOLD = 3;
 const FORGET_TIMEOUT = 5000;
 const DELETE_TIMEOUT = 2000;
+let discoveredAnyPeripheral = false;
 
 setInterval(() => {
     console.log(`Nearby devices: ${nearbyDevices.size}`);
@@ -14,7 +15,7 @@ setInterval(() => {
         if (x.announcements >= ANNOUNCEMENTS_THRESHOLD) {
             activeDevices += 1;
         }
-    })
+    });
     console.log(`Sounding devices: ${activeDevices}`);
 }, 2000);
 
@@ -32,6 +33,8 @@ const sendOsc = (address, value) => {
 };
 
 noble.on('discover', async (peripheral) => {
+    discoveredAnyPeripheral = true;
+
     let index = 0;
     const id = peripheral.id;
     const now = new Date();
@@ -83,7 +86,7 @@ noble.on('stateChange', async (state) => {
 });
 
 function stop(signal) {
-    console.log(`Caught ${signal} signal`);
+    console.log(`Stopping because of ${signal}`);
 
     noble.stopScanningAsync()
         .then(async () => {
@@ -95,4 +98,11 @@ function stop(signal) {
         .then(() => process.exit());
 }
 
+setTimeout(() => {
+    if (!discoveredAnyPeripheral) {
+        stop('Nothing discovered after restart');
+    }
+}, 30 * 1000);
+
+setTimeout(() => { stop('Regular restart') }, 59.249 * 60 * 1000);
 process.on('SIGINT', stop);
