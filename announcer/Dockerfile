@@ -22,5 +22,6 @@ COPY *.pd /app/
 COPY voice /app/voice
 WORKDIR /app
 EXPOSE 5000
-CMD ["/app/pure-data/bin/pd", "-r", "44100", "-rt", "-nogui", "-noadc", "-audiooutdev", "0", "-open", "main.pd"]
+#CMD ["/app/pure-data/bin/pd", "-nogui", "-listdev"]
+CMD ["/app/pure-data/bin/pd", "-r", "48000", "-rt", "-nogui", "-noadc", "-audiooutdev", "0", "-open", "main.pd"]
 #CMD ["/app/pure-data/bin/pd", "-r", "44100", "-rt", "-nogui", "-noadc", "-nodac", "-open", "main.pd"]

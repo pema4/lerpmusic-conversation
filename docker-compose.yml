@@ -1,5 +1,32 @@
 services:
   announcer:
+    container_name: announcer
     build:
-      context: announcer
-      dockerfile: announcer/Dockerfile
+      context: ./announcer
+    expose:
+      - 5000
+    networks:
+      - osc
+    privileged: true
+    volumes:
+      - /dev/snd:/dev/snd
+    restart: always
+
+  scanner:
+    container_name: scanner
+    build:
+      context: ./scanner
+    networks:
+      - osc
+    privileged: true
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    volumes:
+      - /sys/class/bluetooth/hci0:/sys/class/bluetooth/hci0
+      - /var/run/dbus/system_bus_socket:/var/run/dbus/system_bus_socket
+    restart: always
+
+networks:
+  osc:
+    name: osc
