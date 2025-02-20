@@ -1,0 +1,3 @@
+[submodule "announcer/pure-data"]
+	path = announcer/pure-data
+	url = https://github.com/pure-data/pure-data
